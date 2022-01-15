@@ -1,0 +1,19 @@
+{
+  "name": "57blocks-test",
+  "version": "1.0.0",
+  "description": "This a frontend test",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idcuadro82/57blocks-test.git"
+  },
+  "author": "Ivan D Cuadro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idcuadro82/57blocks-test/issues"
+  },
+  "homepage": "https://github.com/idcuadro82/57blocks-test#readme"
+}
