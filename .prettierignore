@@ -6,6 +6,6 @@
 **/package.json
 **/package-lock.json
 **/.prettierignore
-**/.prettierrc.js
+**/.prettierrc.json
 
 .vscode/
