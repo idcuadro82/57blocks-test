@@ -3,17 +3,31 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
   entry: ['./src/index'],
-  output: {
-    path: path.join(__dirname, '/dist'),
-    filename: '[name].bundle.js',
-    clean: true,
-  },
   devServer: {
     compress: true,
     port: 9000,
     historyApiFallback: true,
+  },
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        exclude: /node_modules/,
+        test: /\.(ts|js)x?$/,
+        use: 'ts-loader',
+      },
+    ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: '[name].bundle.js',
+    clean: true,
   },
   plugins: [
     new CopyPlugin({
@@ -32,9 +46,7 @@ module.exports = {
       template: 'public/index.html',
     }),
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 };
