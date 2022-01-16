@@ -5,6 +5,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:css-import-order/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended"
@@ -17,10 +18,24 @@
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "@typescript-eslint"],
+  "plugins": ["css-import-order", "import", "prettier", "react", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-var-requires": 0,
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "import/order": [
+      "warn",
+      {
+        "groups": ["external", "internal", "parent", "sibling", "index", "builtin"],
+        "pathGroups": [
+          {
+            "group": "external",
+            "pattern": "react",
+            "position": "before"
+          }
+        ]
+      }
+    ],
     "react/jsx-sort-props": [
       "error",
       {
