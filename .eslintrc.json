@@ -1,14 +1,35 @@
 {
   "env": {
     "browser": true,
+    "jest/globals": true,
     "node": true
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:css-import-order/recommended",
-    "plugin:react/recommended",
+    "plugin:jest/recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:react/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.+(js|ts)?(x)", "**/__tests__/**/*.{spec,test}.+(js|ts)?(x)"],
+      "extends": ["plugin:testing-library/react"],
+      "rules": {
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error",
+        "jest/valid-title": "warn",
+
+        "testing-library/await-async-query": "error",
+        "testing-library/no-await-sync-query": "error",
+        "testing-library/no-debugging-utils": "warn",
+        "testing-library/no-dom-import": "off"
+      }
+    }
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -18,7 +39,7 @@
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "plugins": ["css-import-order", "import", "prettier", "react", "@typescript-eslint"],
+  "plugins": ["css-import-order", "import", "jest", "prettier", "react", "testing-library", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-var-requires": 0,

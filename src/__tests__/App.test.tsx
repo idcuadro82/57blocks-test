@@ -4,7 +4,7 @@ import App from '../App';
 
 describe('App component verification', () => {
   it('should be rendered', () => {
-    const appComponent = render(<App />);
-    expect(appComponent).toBeTruthy();
+    const view = render(<App />);
+    expect(view).toBeTruthy();
   });
 });
