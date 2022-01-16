@@ -17,6 +17,10 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         use: 'ts-loader',
       },
+      {
+        test: /\.(c|s[ac])ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   optimization: {
