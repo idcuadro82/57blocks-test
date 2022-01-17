@@ -1,5 +1,6 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -29,9 +30,10 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: '[name].bundle.js',
     clean: true,
+    filename: '[name].bundle.js',
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/',
   },
   plugins: [
     new CopyPlugin({
@@ -52,5 +54,6 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    plugins: [new TsconfigPathsPlugin()],
   },
 };
