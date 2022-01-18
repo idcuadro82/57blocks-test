@@ -1,0 +1,40 @@
+$tint-percentage: 5%;
+$tint-percentage-disabled: 50%;
+
+@function button-shadow($color: $white) {
+  @return 0px 0px 0px 2px lighten($color, 50%);
+}
+
+.button {
+  background-color: $grey-dark;
+  border-radius: border-radius();
+  color: $white;
+  cursor: pointer;
+  padding: spacing();
+  text-align: center;
+
+  &:hover {
+    background-color: lighten($grey-dark, $tint-percentage);
+  }
+  &:focus {
+    background-color: darken($grey-dark, $tint-percentage);
+    box-shadow: button-shadow($grey-dark);
+  }
+  &:disabled {
+    background-color: lighten($grey-dark, $tint-percentage-disabled);
+    box-shadow: none;
+    cursor: auto;
+  }
+}
+
+.button-primary {
+  @extend .button;
+}
+
+.button-secondary {
+  @extend .button;
+}
+
+.button-tertiary {
+  @extend .button;
+}

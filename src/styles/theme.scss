@@ -1,0 +1,28 @@
+$base-unit: 8px;
+
+@function border($color: $grey) {
+  @return 1px solid $color;
+}
+
+@function border-radius($size: bs) {
+  $radius: $base-unit;
+  @if $size == bs {
+    $radius: $radius * 1;
+  } @else if $size == lg {
+    $radius: $radius * 0.5;
+  } @else if $size == sm {
+    $radius: $radius * 0.5;
+  } @else if $size == xs {
+    $radius: $radius * 0.25;
+  } @else if $size == xl {
+    $radius: $radius * 1.5;
+  } @else {
+    @error "Unknown size #{$size}.";
+  }
+  @return $radius;
+}
+
+@function spacing($space: 1) {
+  $base-space: $base-unit;
+  @return $base-space * $space;
+}

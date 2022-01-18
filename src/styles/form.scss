@@ -1,0 +1,35 @@
+.form {
+  &-field {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: spacing(2);
+    position: relative;
+
+    &-control {
+      border: border();
+      border-radius: border-radius();
+      margin-bottom: spacing(2);
+      padding: spacing();
+
+      &-error {
+        border: border($red);
+      }
+    }
+
+    &-error {
+      color: $red;
+    }
+
+    &-label {
+      margin-bottom: spacing();
+    }
+
+    &-message {
+      bottom: 0px;
+      font-size: 0.7em;
+      left: 0;
+      position: absolute;
+    }
+  }
+}
