@@ -5,4 +5,4 @@ import App from './App';
 import './index.scss';
 
 const rootNode = document.getElementById('root');
-rootNode ? ReactDOM.render(<App />, document.getElementById('root')) : false;
+rootNode && ReactDOM.render(<App />, document.getElementById('root'));

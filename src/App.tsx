@@ -1,9 +1,38 @@
 import React, { FC } from 'react';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './context';
+import { ProtectedRoute, PublicRoute, ROUTES } from './routes';
 
 import './App.scss';
 
 const App: FC = () => {
-  return <div className="app-container">App Running!!</div>;
+  return (
+    <AuthProvider>
+      <div className="app-container">
+        <Router>
+          <Routes>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <div>Home!!</div>
+                </ProtectedRoute>
+              }
+              path={ROUTES.home}
+            />
+            <Route
+              element={
+                <PublicRoute>
+                  <div>Login!!</div>
+                </PublicRoute>
+              }
+              path={ROUTES.login}
+            />
+            <Route element={<Navigate to={ROUTES.home} />} path="*" />
+          </Routes>
+        </Router>
+      </div>
+    </AuthProvider>
+  );
 };
 
 export default App;
