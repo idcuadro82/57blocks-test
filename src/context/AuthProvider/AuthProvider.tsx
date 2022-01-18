@@ -1,7 +1,7 @@
 import React, { createContext, FC, useContext, useState } from 'react';
 import { LoginData } from 'src/models';
 import { AuthService } from 'src/services';
-import { Auth, DEFAULT_VALUES as AUTH_CONTEXT_DEFAULT_VALUES } from './AuthProvider.model';
+import { Auth, DEFAULT_VALUES as AUTH_CONTEXT_DEFAULT_VALUES } from './AuthProvider.props';
 
 export const AuthContext = createContext<Auth>(AUTH_CONTEXT_DEFAULT_VALUES);
 
