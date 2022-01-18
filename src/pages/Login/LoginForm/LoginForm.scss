@@ -1,0 +1,16 @@
+@import 'src/styles/theme.scss';
+
+@mixin form-layout() {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form {
+  @include form-layout;
+
+  &-fields {
+    @include form-layout;
+    margin-bottom: spacing(3);
+  }
+}

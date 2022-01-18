@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context';
+import { LoginPage } from './pages';
 import { ProtectedRoute, PublicRoute, ROUTES } from './routes';
 
 import './App.scss';
@@ -22,7 +23,7 @@ const App: FC = () => {
             <Route
               element={
                 <PublicRoute>
-                  <div>Login!!</div>
+                  <LoginPage />
                 </PublicRoute>
               }
               path={ROUTES.login}
