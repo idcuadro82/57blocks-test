@@ -6,7 +6,7 @@ import { Auth, DEFAULT_VALUES as AUTH_CONTEXT_DEFAULT_VALUES } from './AuthProvi
 export const AuthContext = createContext<Auth>(AUTH_CONTEXT_DEFAULT_VALUES);
 
 const AuthProvider: FC = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(AuthService.isLoggedIn());
 
   const login = async (loginData: LoginData) => {
     const loggedIn = await AuthService.login(loginData);

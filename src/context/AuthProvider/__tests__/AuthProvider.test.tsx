@@ -6,17 +6,14 @@ import { LoginData } from 'src/models';
 
 const credentialsMock: LoginData = {
   username: 'ivancho',
-  password: '*****',
+  password: '123456',
 };
 
 jest.mock('src/services/AuthService', () => {
   return {
-    login: jest.fn().mockImplementation(() => {
-      return Promise.resolve(true);
-    }),
-    logout: jest.fn().mockImplementation(() => {
-      return Promise.resolve(false);
-    }),
+    isLoggedIn: jest.fn().mockImplementation(() => false),
+    login: jest.fn().mockImplementation(() => Promise.resolve(true)),
+    logout: jest.fn().mockImplementation(() => Promise.resolve(false)),
   };
 });
 

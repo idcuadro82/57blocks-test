@@ -11,8 +11,15 @@
   }
 
   &-form-container {
+    background-color: rgba($white, 0.9);
     border: border();
     padding: spacing(3);
     width: 500px;
+  }
+
+  &-logo {
+    display: block;
+    margin: spacing(2) auto spacing(5);
+    width: 400px;
   }
 }

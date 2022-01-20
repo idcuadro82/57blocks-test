@@ -1,41 +1,41 @@
 import React, { FC } from 'react';
-import { Form, Formik, FormikConfig } from 'formik';
-import { InputField } from 'src/components';
+import { Form, Formik, FormikConfig, FormikProps } from 'formik';
+import { InputField, PasswordField } from 'src/components/Fields';
 import { LoginData } from 'src/models';
-import { FormValidationOptions, formValidations } from 'src/utils';
+import { FormValidation, formValidations, FormValidationWithValue } from 'src/utils';
 
 import './LoginForm.scss';
 
 const LoginForm: FC<FormikConfig<LoginData>> = (props) => {
   return (
     <Formik {...props}>
-      {({ errors }) => {
+      {({ errors, touched }: FormikProps<LoginData>) => {
         return (
           <Form noValidate className="login-form">
             <div className="login-form-fields">
               <InputField
                 required
                 error={!!errors?.username}
+                errorMessage={errors?.username}
                 id="username"
                 label="Username"
-                message={errors?.username}
                 name="username"
                 placeholder="Enter your username"
+                touched={touched.username}
                 validate={usernameValidator()}
               />
-              <InputField
+              <PasswordField
                 required
                 error={!!errors?.password}
+                errorMessage={errors?.password}
                 id="password"
                 label="Password"
-                message={errors?.password}
                 name="password"
                 placeholder="Enter your password"
-                type="password"
+                touched={touched.password}
                 validate={passwordValidator()}
               />
             </div>
-
             <button className="button-primary" type="submit">
               Sign in
             </button>
@@ -47,11 +47,14 @@ const LoginForm: FC<FormikConfig<LoginData>> = (props) => {
 };
 
 const usernameValidator = () => {
-  return formValidations('Username', [FormValidationOptions.REQUIRED]);
+  return formValidations('Username', [FormValidation.REQUIRED]);
 };
 
 const passwordValidator = () => {
-  return formValidations('Password', [FormValidationOptions.REQUIRED]);
+  return formValidations('Password', [
+    FormValidation.REQUIRED,
+    { validator: FormValidationWithValue.MIN_LENGTH, value: 6 },
+  ]);
 };
 
 export default LoginForm;

@@ -7,10 +7,9 @@ $tint-percentage-disabled: 50%;
 
 .button {
   background-color: $grey-dark;
-  border-radius: border-radius();
   color: $white;
   cursor: pointer;
-  padding: spacing();
+  padding: spacing(2);
   text-align: center;
 
   &:hover {

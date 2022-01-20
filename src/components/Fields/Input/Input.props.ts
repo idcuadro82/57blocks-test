@@ -1,9 +1,10 @@
 import { FieldAttributes } from 'formik';
 
 export type CustomInput = {
-  label?: string;
   error?: boolean;
-  message?: string;
+  errorMessage?: string;
+  label?: string;
+  touched?: boolean;
 };
 
 export type InputFieldProps = FieldAttributes<CustomInput>;
