@@ -19,6 +19,9 @@ export default {
   // An array of file extensions your modules use
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
+  // An array of regexp pattern strings that are matched against all module paths before those paths are to be considered 'visible' to the module loader.
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+
   //A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
