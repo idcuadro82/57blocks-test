@@ -1,0 +1,61 @@
+@import 'src/styles/color.scss';
+@import 'src/styles/theme.scss';
+
+$details-color: $green;
+$home-color: $red;
+$link-active-opacity: 0.5;
+
+@mixin link-styles($color) {
+  border-color: $color;
+  &:hover a {
+    background-color: $color;
+  }
+  .active {
+    background-color: rgba($color, $link-active-opacity);
+  }
+}
+
+.app-navbar {
+  display: flex;
+  background-color: $white;
+  height: $navbar-height;
+  justify-content: center;
+  width: 100%;
+
+  &-list {
+    display: flex;
+    height: 100%;
+  }
+
+  &-link {
+    border-top: 4px solid $black;
+    width: 200px;
+
+    &:hover a {
+      color: $white;
+    }
+
+    .active {
+      color: $white;
+    }
+
+    a {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      width: 100%;
+
+      * {
+        margin-right: spacing(2);
+      }
+    }
+
+    &.home {
+      @include link-styles($home-color);
+    }
+    &.details {
+      @include link-styles($details-color);
+    }
+  }
+}

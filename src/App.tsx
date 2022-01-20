@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context';
-import { LoginPage } from './pages';
+import { DetailsPage, HomePage, LoginPage } from './pages';
 import { ProtectedRoute, PublicRoute, ROUTES } from './routes';
+import { AppNavbar } from './components';
 
 import './App.scss';
 
@@ -15,7 +16,15 @@ const App: FC = () => {
             <Route
               element={
                 <ProtectedRoute>
-                  <div>Home!!</div>
+                  <DetailsPage />
+                </ProtectedRoute>
+              }
+              path={ROUTES.details}
+            />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <HomePage />
                 </ProtectedRoute>
               }
               path={ROUTES.home}
@@ -30,6 +39,7 @@ const App: FC = () => {
             />
             <Route element={<Navigate to={ROUTES.home} />} path="*" />
           </Routes>
+          <AppNavbar />
         </Router>
       </div>
     </AuthProvider>

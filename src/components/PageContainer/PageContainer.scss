@@ -1,0 +1,19 @@
+@import 'src/styles/color.scss';
+@import 'src/styles/theme.scss';
+
+.page {
+  &-container {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  &-content {
+    background-color: $page-content-background;
+    padding: spacing(4);
+    max-width: 1280px;
+    width: 100%;
+  }
+}
