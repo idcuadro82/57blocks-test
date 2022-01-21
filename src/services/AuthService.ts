@@ -1,6 +1,6 @@
 import { LoginData } from 'src/models';
 
-const SESSION_DATA_KEY = 'sessionData';
+const SESSION_DATA_KEY = 'SESSION_DATA';
 
 class AuthService {
   private static instance: AuthService;

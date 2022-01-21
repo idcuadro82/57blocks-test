@@ -4,6 +4,7 @@ import { capitalizeFirstLetter } from 'src/utils';
 import { POKEMON_URLS } from './config';
 import { PokemonApiItem } from './PokemonApiList';
 
+const FAVORITE_POKEMONS_KEY = 'FAVORITE_POKEMONS_KEY';
 class PokemonService {
   private static instance: PokemonService;
 
@@ -33,6 +34,7 @@ class PokemonService {
               id: (baseID++).toString(),
               image: POKEMON_URLS.getPokemonSpritesUrl(pokemon.name),
               name: capitalizeFirstLetter(pokemon.name),
+              favorite: false,
             } as Pokemon),
         ),
         pagination: {
@@ -41,6 +43,28 @@ class PokemonService {
           previousUrl: response.previous,
         },
       }));
+  };
+
+  getFavoriteList = (): Promise<string[]> => {
+    return new Promise((resolve) => {
+      const favoriteList = localStorage.getItem(FAVORITE_POKEMONS_KEY);
+      resolve(favoriteList ? JSON.parse(favoriteList) : []);
+    });
+  };
+
+  saveAsFavorite = async (pokemonID: string): Promise<string[]> => {
+    const favoriteList = await this.getFavoriteList();
+    localStorage.setItem(
+      FAVORITE_POKEMONS_KEY,
+      JSON.stringify([...favoriteList, pokemonID].sort((a, b) => Number(a) - Number(b))),
+    );
+    return this.getFavoriteList();
+  };
+
+  removeFromFavorites = async (pokemonID: string): Promise<string[]> => {
+    const favoriteList = await this.getFavoriteList();
+    localStorage.setItem(FAVORITE_POKEMONS_KEY, JSON.stringify(favoriteList.filter((id) => id !== pokemonID)));
+    return this.getFavoriteList();
   };
 }
 

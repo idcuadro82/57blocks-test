@@ -18,7 +18,7 @@ const AppNavbar: FC = () => {
         </li>
         <li className="app-navbar-link details">
           <NavLink to={ROUTES.details}>
-            <i className=" fas fa-address-card" />
+            <i className="fas fa-address-card" />
             Details
           </NavLink>
         </li>

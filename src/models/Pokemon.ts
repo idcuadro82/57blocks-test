@@ -3,4 +3,5 @@ export type Pokemon = {
   image: string;
   name: string;
   linkInfo?: string;
+  favorite: boolean;
 };

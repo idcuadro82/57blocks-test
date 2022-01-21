@@ -1,13 +1,22 @@
+import clsx from 'clsx';
 import React, { FC, useRef } from 'react';
-import { Pokemon } from 'src/models';
+import { PokemonCardProps } from './PokemonCard.props';
 
 import './PokemonCard.scss';
 
-const PokemonCard: FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
+const PokemonCard: FC<PokemonCardProps> = ({ pokemon, onClick = () => {}, onSelectAsFavorite = () => {} }) => {
   const imgRef = useRef<HTMLImageElement>(null);
 
+  const onSelectAsFavoriteHandler = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    onSelectAsFavorite(pokemon);
+  };
+
   return (
-    <div className="pokemon-card">
+    <div className="pokemon-card" onClick={() => onClick(pokemon)}>
+      <button className="pokemon-favorite-buttom" title="Select as favorite" onClick={onSelectAsFavoriteHandler}>
+        <i className={clsx({ 'far fa-star': !pokemon.favorite, 'fas fa-star': pokemon.favorite })} />
+      </button>
       <img
         alt={pokemon.name}
         className="pokemon-image"
