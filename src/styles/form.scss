@@ -30,5 +30,24 @@
       left: 0;
       position: absolute;
     }
+
+    &-container-icon {
+      position: relative;
+
+      i {
+        position: absolute;
+        right: spacing();
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      input {
+        padding-right: spacing(4);
+      }
+
+      .action-icon {
+        cursor: pointer;
+      }
+    }
   }
 }

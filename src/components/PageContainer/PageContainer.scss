@@ -28,12 +28,13 @@ $header-height: 90px;
   }
 
   &-title {
-    font-size: font-size(pagetitle);;
+    font-size: font-size(pagetitle);
     line-height: 1;
 
     &-container {
       align-items: center;
       border-bottom: border($layout-divider-color);
+      justify-content: space-between;
       display: flex;
       height: $header-height;
       padding: 0 spacing(4);

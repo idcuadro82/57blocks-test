@@ -42,3 +42,7 @@ $navbar-height: 70px;
   }
   @return $font-size;
 }
+
+.empty-list-message {
+  font-size: font-size(subtitle);
+}
