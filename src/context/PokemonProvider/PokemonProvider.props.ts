@@ -22,12 +22,14 @@ const DEFAULT_BASE_PROPERTIES: BaseProperties = {
 };
 
 export type PokemonProviderValues = BaseProperties & {
+  getPokemonByName: (name: string) => Promise<void>;
   nextPage: () => void;
   updateFavoritePokemons: (pokemonID: string, isFavorite: boolean) => Promise<void>;
 };
 
 export const POKEMON_CONTEXT_DEFAULT_VALUES: PokemonProviderValues = {
   ...DEFAULT_BASE_PROPERTIES,
+  getPokemonByName: () => Promise.resolve(),
   nextPage: () => {},
   updateFavoritePokemons: () => Promise.resolve(),
 };

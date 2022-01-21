@@ -23,6 +23,18 @@ export const pokemonReducer = (prevState: PokemonState, action: PokemonProviderA
         isLoading: false,
       };
     }
+    case PokemonProviderActionKind.RELOAD_LIST: {
+      const { data, pagination } = action.payload;
+      return {
+        ...prevState,
+        error: false,
+        isLoading: false,
+        pokemonsList: [...data],
+        pagination: {
+          ...pagination,
+        },
+      };
+    }
     case PokemonProviderActionKind.UPDATE_FAVORITE_POKEMONS: {
       return {
         ...prevState,
@@ -32,15 +44,12 @@ export const pokemonReducer = (prevState: PokemonState, action: PokemonProviderA
       };
     }
     case PokemonProviderActionKind.UPDATE_POKEMON_LIST: {
-      const {
-        response: { data, pagination },
-        favoritePokemons,
-      } = action.payload;
+      const { data, pagination } = action.payload;
       return {
         ...prevState,
         error: false,
         isLoading: false,
-        pokemonsList: [...prevState.pokemonsList, ...data].map(mapFavoritesUtil(favoritePokemons)),
+        pokemonsList: [...prevState.pokemonsList, ...data],
         pagination: {
           ...pagination,
         },

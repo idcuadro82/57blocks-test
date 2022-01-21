@@ -1,4 +1,4 @@
-export type PokemonApiItem = {
+export type PokemonApiListItem = {
   count: number;
   next: string;
   previous: string;
@@ -6,4 +6,10 @@ export type PokemonApiItem = {
     name: string;
     url: string;
   }[];
+};
+
+export type PokemonApi = {
+  id: string;
+  name: string;
+  url: string;
 };

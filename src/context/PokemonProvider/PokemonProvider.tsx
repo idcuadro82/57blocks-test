@@ -8,7 +8,7 @@ import {
   DEFAULT_POKEMON_PAGE_SIZE,
 } from './PokemonProvider.props';
 import { pokemonReducer } from './PokemonProvider.reducer';
-import { PokemonProviderActionKind } from './PokemonProvider.actions';
+import { PokemonProviderAction, PokemonProviderActionKind } from './PokemonProvider.actions';
 import { DEFAULT_POKEMON_PAGE_OFFSET } from './PokemonProvider.props';
 
 export const PokemonContext = createContext<PokemonProviderValues>(POKEMON_CONTEXT_DEFAULT_VALUES);
@@ -22,6 +22,18 @@ const PokemonProvider: FC = (props) => {
 
   const setError = () => dispatch({ type: PokemonProviderActionKind.ERROR });
 
+  const getPokemonByName = async (name: string) => {
+    if (!name) return getPokemonList();
+    try {
+      const response = await PokemonService.getPokemonByName(name);
+      dispatch({ type: PokemonProviderActionKind.RELOAD_LIST, payload: response });
+    } catch (error) {
+      setError();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getPokemonList = async (url?: string) => {
     try {
       const response = url
@@ -31,10 +43,10 @@ const PokemonProvider: FC = (props) => {
             offset: DEFAULT_POKEMON_PAGE_OFFSET,
           });
 
-      const favoritePokemons = await PokemonService.getFavoriteList();
-
-      isMountedRef.current &&
-        dispatch({ type: PokemonProviderActionKind.UPDATE_POKEMON_LIST, payload: { response, favoritePokemons } });
+      const action: PokemonProviderAction = url
+        ? { type: PokemonProviderActionKind.UPDATE_POKEMON_LIST, payload: response }
+        : { type: PokemonProviderActionKind.RELOAD_LIST, payload: response };
+      isMountedRef.current && dispatch(action);
     } catch (error) {
       isMountedRef.current && setError();
     } finally {
@@ -65,7 +77,9 @@ const PokemonProvider: FC = (props) => {
     getPokemonList();
   }, []);
 
-  return <PokemonContext.Provider value={{ ...state, nextPage, updateFavoritePokemons }} {...props} />;
+  return (
+    <PokemonContext.Provider value={{ ...state, getPokemonByName, nextPage, updateFavoritePokemons }} {...props} />
+  );
 };
 
 export const usePokemon = (): PokemonProviderValues => {

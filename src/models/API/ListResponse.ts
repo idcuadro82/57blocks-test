@@ -6,6 +6,15 @@ export type PaginationResponse = {
   previousUrl?: string | null;
 };
 
+export const DEFAULT_PAGINATION_RESPONSE = {
+  data: [],
+  pagination: {
+    totalRecords: 0,
+    previousUrl: null,
+    nextUrl: null,
+  },
+};
+
 export type ListResponse<T> = {
   data: T[];
   pagination: PaginationResponse;
