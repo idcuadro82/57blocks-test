@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './context';
+import { AuthProvider, PokemonProvider } from './context';
 import { DetailsPage, HomePage, LoginPage } from './pages';
 import { ProtectedRoute, PublicRoute, ROUTES } from './routes';
 import { AppNavbar } from './components';
@@ -15,17 +15,21 @@ const App: FC = () => {
           <Routes>
             <Route
               element={
-                <ProtectedRoute>
-                  <DetailsPage />
-                </ProtectedRoute>
+                <PokemonProvider>
+                  <ProtectedRoute>
+                    <DetailsPage />
+                  </ProtectedRoute>
+                </PokemonProvider>
               }
               path={ROUTES.details}
             />
             <Route
               element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
+                <PokemonProvider>
+                  <ProtectedRoute>
+                    <HomePage />
+                  </ProtectedRoute>
+                </PokemonProvider>
               }
               path={ROUTES.home}
             />

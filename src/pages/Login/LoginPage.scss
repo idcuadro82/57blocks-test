@@ -12,7 +12,7 @@
 
   &-form-container {
     background-color: $page-content-background;
-    border: border();
+    border: border($layout-divider-color);
     padding: spacing(3);
     width: 500px;
   }

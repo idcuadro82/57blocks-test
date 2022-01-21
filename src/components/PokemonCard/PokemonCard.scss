@@ -1,0 +1,28 @@
+@import 'src/styles/color.scss';
+@import 'src/styles/theme.scss';
+
+.pokemon {
+  &-card {
+    align-items: center;
+    background-color: $page-content-background;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: spacing(2);
+
+    &:hover {
+      background-color: darken($page-content-background, 5%);
+    }
+  }
+
+  &-image {
+    width: 150px;
+    margin-bottom: spacing();
+  }
+
+  &-name {
+    font-size: font-size(subtitle);
+    line-height: 1;
+  }
+}

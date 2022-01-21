@@ -1,19 +1,42 @@
 @import 'src/styles/color.scss';
 @import 'src/styles/theme.scss';
 
+$page-content-width: 1280px;
+$header-height: 90px;
+
 .page {
+  background-color: $page-content-background;
+  border: border($layout-divider-color);
+  max-width: $page-content-width;
+  height: 100%;
+  width: 100%;
+
   &-container {
-    align-self: center;
+    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     height: 100%;
     width: 100%;
   }
 
   &-content {
-    background-color: $page-content-background;
+    height: calc(100% - $header-height);
+    overflow-y: auto;
     padding: spacing(4);
-    max-width: 1280px;
     width: 100%;
+  }
+
+  &-title {
+    font-size: font-size(pagetitle);;
+    line-height: 1;
+
+    &-container {
+      align-items: center;
+      border-bottom: border($layout-divider-color);
+      display: flex;
+      height: $header-height;
+      padding: 0 spacing(4);
+    }
   }
 }

@@ -1,9 +1,9 @@
 import React, { createContext, FC, useContext, useState } from 'react';
 import { LoginData } from 'src/models';
 import { AuthService } from 'src/services';
-import { Auth, DEFAULT_VALUES as AUTH_CONTEXT_DEFAULT_VALUES } from './AuthProvider.props';
+import { AuthProviderValues, AUTH_CONTEXT_DEFAULT_VALUES } from './AuthProvider.props';
 
-export const AuthContext = createContext<Auth>(AUTH_CONTEXT_DEFAULT_VALUES);
+export const AuthContext = createContext<AuthProviderValues>(AUTH_CONTEXT_DEFAULT_VALUES);
 
 const AuthProvider: FC = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(AuthService.isLoggedIn());
@@ -21,7 +21,7 @@ const AuthProvider: FC = (props) => {
   return <AuthContext.Provider value={{ isLoggedIn, login, logout }} {...props} />;
 };
 
-export const useAuth = (): Auth => {
+export const useAuth = (): AuthProviderValues => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be inside AuthProvider');

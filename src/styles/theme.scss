@@ -1,4 +1,5 @@
 $base-unit: 8px;
+$base-font-size: 1rem;
 $navbar-height: 70px;
 
 @function border($color: $grey) {
@@ -26,4 +27,18 @@ $navbar-height: 70px;
 @function spacing($space: 1) {
   $base-space: $base-unit;
   @return $base-space * $space;
+}
+
+@function font-size($size: normal) {
+  $font-size: $base-font-size;
+  @if $size == normal {
+    $font-size: $font-size * 1;
+  } @else if $size == subtitle {
+    $font-size: $font-size * 1.2;
+  } @else if $size == pagetitle {
+    $font-size: $font-size * 2.5;
+  } @else {
+    @error "Unknown size #{$size}.";
+  }
+  @return $font-size;
 }

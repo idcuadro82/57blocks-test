@@ -1,0 +1,16 @@
+@import 'src/styles/theme.scss';
+
+.pokemon {
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: spacing(2);
+  }
+
+  &-paginator {
+    display: flex;
+    justify-content: center;
+    padding: spacing(2);
+    width: 100%;
+  }
+}

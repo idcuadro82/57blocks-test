@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AuthProvider, useAuth } from 'src/context';
 import { LoginData } from 'src/models';
@@ -30,6 +30,11 @@ const TestComponent: FC = () => {
 };
 
 describe('Auth provider verification', () => {
+  afterEach(() => {
+    cleanup();
+    jest.clearAllMocks();
+  });
+
   it('01 - should be initialized with isLogginIn in false', () => {
     render(
       <AuthProvider>
