@@ -1,11 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { ButtonLoading, PageContainer, PokemonCard, SearchInput } from 'src/components';
-import { usePokemon } from 'src/context';
+import { useLoading, usePokemon } from 'src/context';
 
 import './HomePage.scss';
 
 const HomePage: FC = () => {
+  const { dispatchLoading } = useLoading();
   const { getPokemonByName, isLoading, nextPage, pokemonsList, pagination, updateFavoritePokemons } = usePokemon();
+
+  useEffect(() => {
+    dispatchLoading(isLoading);
+  }, [isLoading]);
 
   return (
     <PageContainer

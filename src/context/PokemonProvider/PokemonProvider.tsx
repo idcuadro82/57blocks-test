@@ -24,6 +24,7 @@ const PokemonProvider: FC = (props) => {
 
   const getPokemonByName = async (name: string) => {
     if (!name) return getPokemonList();
+    setLoading(true);
     try {
       const response = await PokemonService.getPokemonByName(name);
       dispatch({ type: PokemonProviderActionKind.RELOAD_LIST, payload: response });
@@ -35,6 +36,7 @@ const PokemonProvider: FC = (props) => {
   };
 
   const getPokemonList = async (url?: string) => {
+    setLoading(true);
     try {
       const response = url
         ? await PokemonService.getPokemonListByUrl(url)
