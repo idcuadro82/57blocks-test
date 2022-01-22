@@ -1,13 +1,5 @@
 @import 'src/styles/color.scss';
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+@import 'src/styles/theme.scss';
 
 .app-loader {
   animation: 1s rotate linear infinite;
