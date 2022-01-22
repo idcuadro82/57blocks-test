@@ -6,7 +6,7 @@ export const LoadingContext = createContext<{
   dispatchLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   isLoading: false,
-  dispatchLoading: (value) => {},
+  dispatchLoading: () => {},
 });
 
 const LoadingProvider: FC = (props) => {

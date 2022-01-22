@@ -6,7 +6,7 @@ const ButtonLoading: FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { text: 
   ...buttonProps
 }) => {
   return (
-    <button className="button-primary" type="button" {...buttonProps}>
+    <button className="button-primary" disabled={isLoading} type="button" {...buttonProps}>
       {text}
     </button>
   );
