@@ -73,29 +73,30 @@ class PokemonService {
     return this.getPokemonListByUrl(url.href).catch((error) => error);
   };
 
-  getPokemonListByUrl = (url: string): Promise<ListResponse<Pokemon>> => {
+  getPokemonListByUrl = async (url: string): Promise<ListResponse<Pokemon>> => {
     const urlParsed = new URL(url);
     const offset = Number(urlParsed.searchParams.get('offset'));
     let baseID = isNaN(offset) ? 1 : offset + 1;
-    return fetch(url)
-      .then((response) => response.json() as Promise<PokemonApiListItem>)
-      .then((response: PokemonApiListItem) => ({
-        data: response.results.map((pokemon) => {
-          const id = (baseID++).toString();
-          return {
-            id,
-            image: POKEMON_URLS.getPokemonSpritesUrl(pokemon.name),
-            name: capitalizeFirstLetter(pokemon.name),
-            favorite: this.getFavoriteListLocalStorage().some((favorite) => favorite == id),
-          } as Pokemon;
-        }),
-        pagination: {
-          totalRecords: response.count,
-          nextUrl: response.next,
-          previousUrl: response.previous,
-        },
-      }))
-      .catch((error) => error);
+
+    const response = await fetch(url);
+    const data = (await response.json()) as PokemonApiListItem;
+
+    return {
+      data: data.results.map((pokemon) => {
+        const id = (baseID++).toString();
+        return {
+          id,
+          image: POKEMON_URLS.getPokemonSpritesUrl(pokemon.name),
+          name: capitalizeFirstLetter(pokemon.name),
+          favorite: this.getFavoriteListLocalStorage().some((favorite) => favorite == id),
+        } as Pokemon;
+      }),
+      pagination: {
+        totalRecords: data.count,
+        nextUrl: data.next,
+        previousUrl: data.previous,
+      },
+    };
   };
 
   getFavoriteListLocalStorage = (): string[] => {
