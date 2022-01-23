@@ -42,8 +42,8 @@ module.exports = {
   output: {
     clean: true,
     filename: '[name].bundle.js',
-    path: path.join(__dirname, '/dist'),
-    publicPath: '/',
+    path: path.join(__dirname, '/docs'),
+    publicPath: './',
   },
   plugins: [
     new CopyPlugin({
