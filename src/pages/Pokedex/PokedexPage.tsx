@@ -1,16 +1,24 @@
 import React, { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ButtonLoading, PageContainer, PokemonCard, SearchInput } from 'src/components';
 import { useLoading, usePokemon } from 'src/context';
+import { Pokemon } from 'src/models';
+import { ROUTES } from 'src/routes';
 
-import './HomePage.scss';
+import './PokedexPage.scss';
 
-const HomePage: FC = () => {
+const PokedexPage: FC = () => {
   const { dispatchLoading } = useLoading();
   const { getPokemonByName, isLoading, nextPage, pokemonsList, pagination, updateFavoritePokemons } = usePokemon();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatchLoading(isLoading);
   }, [isLoading]);
+
+  const handlerCardClick = (pokemon: Pokemon) => {
+    navigate(`${ROUTES.home}/${pokemon.id}`);
+  };
 
   return (
     <PageContainer
@@ -22,8 +30,10 @@ const HomePage: FC = () => {
           {pokemonsList.length ? (
             pokemonsList.map((pokemon) => (
               <PokemonCard
+                pressable
                 key={pokemon.id}
                 pokemon={pokemon}
+                onClick={handlerCardClick}
                 onSelectAsFavorite={() => updateFavoritePokemons(pokemon.id, !pokemon.favorite)}
               />
             ))
@@ -41,4 +51,4 @@ const HomePage: FC = () => {
   );
 };
 
-export default HomePage;
+export default PokedexPage;

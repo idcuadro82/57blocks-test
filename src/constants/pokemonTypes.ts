@@ -1,0 +1,43 @@
+export enum POKEMON_TYPE {
+  BUG = 'bug',
+  DARK = 'dark',
+  DRAGON = 'dragon',
+  ELECTRIC = 'electric',
+  FAIRY = 'fairy',
+  FIGHTING = 'fighting',
+  FIRE = 'fire',
+  FLYING = 'flying',
+  GHOST = 'ghost',
+  GRASS = 'grass',
+  GROUND = 'ground',
+  ICE = 'ice',
+  NORMAL = 'normal',
+  PHYCHIC = 'psychic',
+  POISON = 'poison',
+  ROCK = 'rock',
+  STEEL = 'steel',
+  WATER = 'water',
+}
+
+export const POKEMON_TYPE_COLOR: {
+  [key in POKEMON_TYPE]: string;
+} = {
+  [POKEMON_TYPE.BUG]: '#ab2',
+  [POKEMON_TYPE.DARK]: '#754',
+  [POKEMON_TYPE.DRAGON]: '#76e',
+  [POKEMON_TYPE.ELECTRIC]: '#fc3',
+  [POKEMON_TYPE.FAIRY]: '#e9e',
+  [POKEMON_TYPE.FIGHTING]: '#b54',
+  [POKEMON_TYPE.FIRE]: '#f42',
+  [POKEMON_TYPE.FLYING]: '#89f',
+  [POKEMON_TYPE.GHOST]: '#66b',
+  [POKEMON_TYPE.GRASS]: '#7c5',
+  [POKEMON_TYPE.GROUND]: '#db5',
+  [POKEMON_TYPE.ICE]: '#6cf',
+  [POKEMON_TYPE.NORMAL]: '#aa9',
+  [POKEMON_TYPE.PHYCHIC]: '#f59',
+  [POKEMON_TYPE.POISON]: '#a59',
+  [POKEMON_TYPE.ROCK]: '#ba6',
+  [POKEMON_TYPE.STEEL]: '#aab',
+  [POKEMON_TYPE.WATER]: '#39f',
+};

@@ -22,11 +22,23 @@ const PokemonProvider: FC = (props) => {
 
   const setError = () => dispatch({ type: PokemonProviderActionKind.ERROR });
 
+  const getPokemonByID = async (id: string) => {
+    setLoading(true);
+    try {
+      const response = await PokemonService.getPokemon(id);
+      dispatch({ type: PokemonProviderActionKind.UPDATE_POKEMON, payload: response });
+    } catch (error) {
+      setError();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getPokemonByName = async (name: string) => {
     if (!name) return getPokemonList();
     setLoading(true);
     try {
-      const response = await PokemonService.getPokemonByName(name);
+      const response = await PokemonService.getPokemon(name);
       dispatch({ type: PokemonProviderActionKind.RELOAD_LIST, payload: response });
     } catch (error) {
       setError();
@@ -80,7 +92,10 @@ const PokemonProvider: FC = (props) => {
   }, []);
 
   return (
-    <PokemonContext.Provider value={{ ...state, getPokemonByName, nextPage, updateFavoritePokemons }} {...props} />
+    <PokemonContext.Provider
+      value={{ ...state, getPokemonByID, getPokemonByName, nextPage, updateFavoritePokemons }}
+      {...props}
+    />
   );
 };
 

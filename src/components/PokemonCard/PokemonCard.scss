@@ -5,20 +5,20 @@
   &-card {
     align-items: center;
     background-color: $page-content-background;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: spacing(2);
     position: relative;
 
-    &:hover {
+    &.pressable:hover {
       background-color: darken($page-content-background, 5%);
+      cursor: pointer;
     }
   }
 
   &-image {
-    width: 150px;
+    width: 128px;
     margin-bottom: spacing();
   }
 

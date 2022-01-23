@@ -1,7 +1,7 @@
-import React, { FC, Suspense } from 'react';
-import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import React, { FC } from 'react';
+import { BrowserRouter as Router, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { AuthProvider, LoadingProvider, PokemonProvider } from './context';
-import { DetailsPage, HomePage, LoginPage } from './pages';
+import { DetailsPage, LoginPage, PokedexPage, PokemonPage } from './pages';
 import { ProtectedRoute, PublicRoute, ROUTES } from './routes';
 import { AppNavbar } from './components';
 
@@ -16,11 +16,9 @@ const App: FC = () => {
             <Routes>
               <Route
                 element={
-                  <PokemonProvider>
-                    <ProtectedRoute>
-                      <DetailsPage />
-                    </ProtectedRoute>
-                  </PokemonProvider>
+                  <ProtectedRoute>
+                    <DetailsPage />
+                  </ProtectedRoute>
                 }
                 path={ROUTES.details}
               />
@@ -28,12 +26,15 @@ const App: FC = () => {
                 element={
                   <PokemonProvider>
                     <ProtectedRoute>
-                      <HomePage />
+                      <Outlet />
                     </ProtectedRoute>
                   </PokemonProvider>
                 }
                 path={ROUTES.home}
-              />
+              >
+                <Route element={<PokedexPage />} path="" />
+                <Route element={<PokemonPage />} path=":pokemonID" />
+              </Route>
               <Route
                 element={
                   <PublicRoute>

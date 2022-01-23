@@ -1,0 +1,63 @@
+@import 'src/styles/color.scss';
+@import 'src/styles/theme.scss';
+
+.pokemon-panel {
+  border: border($layout-divider-color);
+  display: flex;
+
+  &-data-container {
+    border-left: border($layout-divider-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: spacing(3);
+  }
+
+  &-data-content {
+    height: 100%;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  &-description {
+    font-size: font-size(normal);
+    line-height: 1.5;
+  }
+
+  &-image {
+    display: block;
+    width: 200px;
+  }
+
+  &-row {
+    margin-bottom: spacing();
+  }
+
+  &-title {
+    font-size: font-size(subtitle);
+    font-weight: bold;
+  }
+
+  &-stats {
+    border: border($layout-divider-color);
+    display: table;
+    width: 100%;
+
+    .stat-row {
+      clear: both;
+      display: table-row;
+      width: auto;
+    }
+    .stat-element {
+      border: border($layout-divider-color);
+      display: table-column;
+      float: left;
+      padding: spacing();
+      width: 50%;
+
+      &.center {
+        text-align: center;
+      }
+    }
+  }
+}

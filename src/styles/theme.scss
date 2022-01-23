@@ -15,7 +15,7 @@ $navbar-height: 70px;
   @if $size == bs {
     $radius: $radius * 1;
   } @else if $size == lg {
-    $radius: $radius * 0.5;
+    $radius: $radius * 1.25;
   } @else if $size == sm {
     $radius: $radius * 0.5;
   } @else if $size == xs {
@@ -37,10 +37,14 @@ $navbar-height: 70px;
   $font-size: $base-font-size;
   @if $size == normal {
     $font-size: $font-size * 1;
+  } @else if $size == header {
+    $font-size: $font-size * 2;
   } @else if $size == subtitle {
     $font-size: $font-size * 1.2;
   } @else if $size == pagetitle {
     $font-size: $font-size * 2.5;
+  } @else if $size == label {
+    $font-size: $font-size * 0.75;
   } @else {
     @error "Unknown size #{$size}.";
   }

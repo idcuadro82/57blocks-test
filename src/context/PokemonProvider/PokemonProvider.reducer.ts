@@ -43,6 +43,16 @@ export const pokemonReducer = (prevState: PokemonState, action: PokemonProviderA
         pokemonsList: prevState.pokemonsList.map(mapFavoritesUtil(action.favoritePokemons)),
       };
     }
+    case PokemonProviderActionKind.UPDATE_POKEMON: {
+      const { data } = action.payload;
+      const pokemon = data.find((pokemon) => pokemon.id);
+      return {
+        ...prevState,
+        error: false,
+        isLoading: false,
+        pokemon: pokemon || null,
+      };
+    }
     case PokemonProviderActionKind.UPDATE_POKEMON_LIST: {
       const { data, pagination } = action.payload;
       return {

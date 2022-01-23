@@ -6,6 +6,7 @@ export const DEFAULT_POKEMON_PAGE_OFFSET = 0;
 type BaseProperties = {
   error: boolean;
   isLoading: boolean;
+  pokemon: Pokemon | null;
   pokemonsList: Pokemon[];
   pagination: PaginationResponse;
 };
@@ -13,6 +14,7 @@ type BaseProperties = {
 const DEFAULT_BASE_PROPERTIES: BaseProperties = {
   error: false,
   isLoading: true,
+  pokemon: null,
   pokemonsList: [],
   pagination: {
     totalRecords: 0,
@@ -22,6 +24,7 @@ const DEFAULT_BASE_PROPERTIES: BaseProperties = {
 };
 
 export type PokemonProviderValues = BaseProperties & {
+  getPokemonByID: (name: string) => Promise<void>;
   getPokemonByName: (name: string) => Promise<void>;
   nextPage: () => void;
   updateFavoritePokemons: (pokemonID: string, isFavorite: boolean) => Promise<void>;
@@ -29,6 +32,7 @@ export type PokemonProviderValues = BaseProperties & {
 
 export const POKEMON_CONTEXT_DEFAULT_VALUES: PokemonProviderValues = {
   ...DEFAULT_BASE_PROPERTIES,
+  getPokemonByID: () => Promise.resolve(),
   getPokemonByName: () => Promise.resolve(),
   nextPage: () => {},
   updateFavoritePokemons: () => Promise.resolve(),
