@@ -48,3 +48,37 @@ follow:
 new vertex should be connected to the last added existing vertex with a polyline, when user click on the complete button,
 the last added vertex should be connect to the first vertex to form a polygon.
 4. When users click the reset button, all vertices should be cleared from the canvas.
+
+# TECH GUIDE
+
+## Getting Started
+
+For the first time you must run:
+
+```bash
+npm install
+```
+
+## Serve in local
+
+To start a dev local server, run:
+
+```bash
+npm start
+```
+
+## Build all
+
+To build all the components in a bundle for develop, run:
+
+```bash
+npm run build
+```
+
+## Good Practices
+
+To check good practices or style guides of our source code.
+
+```bash
+npm run lint
+```
